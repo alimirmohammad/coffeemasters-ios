@@ -8,15 +8,36 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var cartManager: CartManager
+    
     var body: some View {
-        VStack {
-            Offer(title: "This the title", description: "This is the description")
+        TabView {
+            MenuPage()
+                .tabItem {
+                    Image(systemName: "cup.and.saucer")
+                    Text("Menu")
+                }
+            OffersPage()
+                .tabItem {
+                    Image(systemName: "tag")
+                    Text("Offers")
+                }
+            OrdersPage()
+                .tabItem {
+                    Image(systemName: "cart")
+                    Text("Orders")
+                }.badge(cartManager.cart.count)
+            InfoPage()
+                .tabItem {
+                    Image(systemName: "info")
+                    Text("Info")
+                }
         }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView().environmentObject(CartManager())
     }
 }

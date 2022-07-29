@@ -12,9 +12,14 @@ struct Offer: View {
     var description = ""
     
     var body: some View {
-        VStack {
-            Text(title).font(.title)
-            Text(description)
+        ZStack {
+            Image("BackgroundPattern")
+                .frame(maxWidth: .infinity, maxHeight: 300)
+                .clipped()
+            VStack {
+                Text(title).padding().font(.title).background(Color("CardBackground"))
+                Text(description).padding().background(Color("CardBackground"))
+            }
         }
     }
 }
